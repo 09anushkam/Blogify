@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Homepage</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <% if (locals.user) { %>
+
+    <div class="container mt-3 ">
+        <div class="row row-cols-4">
+            <% locals.blogs.forEach(blog=> { %>
+                <div class="col">
+                    <div class="card col" style="width: 18rem;">
+                        <img src="<%= blog.coverImageURL %>" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= blog.title %>
+                            </h5> <!--title-->
+                            <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a> <!--view button-->
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+
+    <% } else { %>
+
+        <div class="container mt-3">
+            <h1>Welcome to Blogify!</h1>
+        </div>
+
+        <% } %>
+     
+    <%- include('./partials/scripts') %>
+</body>
+</html>
