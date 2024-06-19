@@ -1,7 +1,11 @@
+require('dotenv').config();
+
 const path=require("path");
 const express=require("express");
 const mongoose=require("mongoose");
 const cookieParser=require("cookie-parser");
+
+
 
 const Blog=require("./models/blog");
 
@@ -11,11 +15,11 @@ const { checkForAuthenticationCookie } = require("./middlewares/authentication")
 
 // creating express app
 const app=express();
-const PORT=8000;
+const PORT=process.env.PORT||8000; //for deployment purpose use env variable
 
 // connecting to mongodb using mongoose
 mongoose
-.connect('mongodb://localhost:27017/blogify')
+.connect(process.env.MONGO_URL) //'mongodb://localhost:27017/blogify'
 .then((e)=>console.log("MongoDB Connected!"));
 
 // setting ejs view engine

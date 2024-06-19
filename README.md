@@ -336,3 +336,50 @@ adding comments
 // edit/delete  
 // issue - Anushka Murade (hard coded) in navbar <!-- Name should be dynamic in navbar -->  
 // user profile image upload is not handled  
+
+## Deploying Blog App  
+
+- for deployment purpose use env variable  
+-> index.js -  
+
+            const PORT=process.env.PORT||8000;  
+
+- connecting to mongodb using mongoose  
+
+            mongoose  
+            .connect(process.env.MONGO_URL)    //'mongodb://localhost:27017/blogify'  
+            .then((e)=>console.log("MongoDB Connected!"));  
+
+- make sure inside of package.json u have proper start script cloud providers uses start script  
+
+            "scripts": {  
+                "start": "node app.js",  
+                "dev": "nodemon app.js"  
+            },  
+
+- rename index.js -> app.js  
+
+- accordingly make changes in package.json  
+
+  "main": "app.js",  
+  "scripts": {  
+    "start": "node app.js",  
+    "dev": "nodemon app.js"  
+  },  
+
+- create .env file  
+.env -  
+
+- npm i dovenv  
+
+- app.js  
+at the top import dotenv  
+
+            require('dotenv').config();
+
+- amazon web services  
+make free acc  
+select region mumbai to reduce the latency  
+search for beanstalk in the website  
+
+<!-- 9:43 -->
